@@ -51,8 +51,10 @@ router.post('/register', async (req, res) => {
       email: payload.email,
       password: hashedPassword
     })
-
    
+    // Generate token
+    const token = jwt.sign({ email: payload.email }, process.env.JWT_SECRET, { expiresIn: '7d' });
+    res.cookie('auth', token, {httpOnly: true, secure: true })
     res.json({Status: 'Successful'})
   } catch (err) {
     console.log(err)
