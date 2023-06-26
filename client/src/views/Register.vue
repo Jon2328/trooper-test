@@ -2,7 +2,7 @@
 main.register-wrapper
   .register-container
     img.logo(src="@/assets/images/logo.png")
-    .form-container
+    .form-container.standard
       .input-group
         label(for="email") Email
         input#email(type="text" v-model="state.email")
@@ -26,8 +26,6 @@ const state = reactive({
   passwordErr: '',
   status: ''
 })
-
-proxy.$axios.get('/user/')
 
 async function register() {
   // Debounce
@@ -63,7 +61,7 @@ async function register() {
       password: state.password
     })
     state.status = ''
-    router.push('/profile')
+    router.push('/profile-creation')
   } catch (err: any) {
     console.log(err)
     state.status = ''
@@ -90,53 +88,6 @@ async function register() {
   .logo
     margin: 0rem auto 5rem
     display: block
-  .form-container
-    .input-group
-      display: flex
-      flex-direction: column
-      width: 50%
-      margin: 1.5rem auto
-      +mobile
-        width: 80%
-      label
-        font-size: 1.5rem
-        color: var(--primary)
-        font-weight: bold
-      input
-        font-size: 1rem
-        padding: 0.75rem
-        border: 1px solid var(--primary)
-        box-shadow: 6px 4px var(--secondary)
-      .error
-        color: var(--error-red)
-        font-size: 1rem
-        visibility: hidden
-        margin: 0.25rem 0px
-        &.show
-          visibility: visible
-    .submit-btn
-      width: 50%
-      margin: 2.5rem auto
-      display: block
-      color: #ffffff
-      background-color: var(--primary)
-      box-shadow: 6px 4px var(--secondary)
-      border: 0px
-      font-size: 2rem
-      border-radius: 30px
-      cursor: pointer
-      +mobile
-        width: 80%
-      &:hover
-        transform: scale(1.05)
-    .status
-      font-size: 1rem
-      margin: 0px auto
-      width: 50%
-      text-align: center
-      visibility: hidden
-      &.show
-        visibility: visible
 
 
 </style>

@@ -23,3 +23,70 @@ html
 
 body
   margin: 0px
+
+.form-container.standard
+    .input-group
+      display: flex
+      flex-direction: column
+      width: 50%
+      margin: 1.5rem auto
+      +mobile
+        width: 80%
+      .row
+        display: flex
+        flex-direction: row
+        gap: 1rem
+        width: 100%
+        input
+          font-size: 1rem
+          padding: 0.75rem
+          border: 1px solid var(--primary)
+          box-shadow: 6px 4px var(--secondary)
+          min-width: 0px
+          text-align: center
+          letter-spacing: 0.2rem
+          &.small
+            flex: 1
+          &.big
+            flex: 2
+      label
+        font-size: 1.5rem
+        color: var(--primary)
+        font-weight: bold
+      input,textarea
+        font-size: 1rem
+        padding: 0.75rem
+        border: 1px solid var(--primary)
+        box-shadow: 6px 4px var(--secondary)
+        resize: none
+        letter-spacing: 0.15rem
+      .error
+        color: var(--error-red)
+        font-size: 1rem
+        visibility: hidden
+        margin: 0.25rem 0px
+        &.show
+          visibility: visible
+    .submit-btn
+      width: 50%
+      margin: 2.5rem auto
+      display: block
+      color: #ffffff
+      background-color: var(--primary)
+      border: 0px
+      font-size: 2rem
+      border-radius: 30px
+      cursor: pointer
+      padding: 0.5rem 0rem
+      +mobile
+        width: 80%
+      &:hover
+        box-shadow: 6px 4px var(--secondary)
+    .status
+      font-size: 1rem
+      margin: 0px auto
+      width: 50%
+      text-align: center
+      visibility: hidden
+      &.show
+        visibility: visible
