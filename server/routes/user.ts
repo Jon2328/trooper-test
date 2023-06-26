@@ -2,7 +2,6 @@ import express = require('express')
 const router = express.Router()
 
 import bcrypt from 'bcrypt'
-import emailValidator from 'email-validator'
 import jwt from 'jsonwebtoken'
 import auth from '../middlewares/auth'
 
@@ -27,7 +26,7 @@ router.post('/register', async (req, res) => {
     }
 
     // Validate Email
-    const emailIsValid = emailValidator.validate(payload.email)
+    const emailIsValid = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(payload.email)
     if (!emailIsValid) {
       throw new Error('Email is invalid')
     }
@@ -81,7 +80,7 @@ router.post('/login', async (req, res) => {
     }
 
     // Validate Email
-    const emailIsValid = emailValidator.validate(payload.email)
+    const emailIsValid = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(payload.email)
     if (!emailIsValid) {
       throw new Error('Email is invalid')
     }
