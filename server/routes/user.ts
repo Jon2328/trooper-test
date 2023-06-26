@@ -114,4 +114,49 @@ router.post('/login', async (req, res) => {
   }
 })
 
+router.post('/profile-creation', auth, async (req, res) => {
+  try {
+    const payload = req.body
+    let InsufficientParam = []
+    // Payload Existence Check and Validation
+
+    if (!payload.name || !(typeof payload.name === 'string')) {
+      InsufficientParam.push('Name')
+    }
+
+    if (!payload.dob || !(typeof payload.dob === 'string')) {
+      InsufficientParam.push('Date of birth')
+    }
+
+    if (!payload.phone || !(typeof payload.phone === 'string')) {
+      InsufficientParam.push('Phone')
+    }
+
+    if (!payload.address || !(typeof payload.address === 'string')) {
+      InsufficientParam.push('Address')
+    }
+
+    if (InsufficientParam.length > 1) {
+      throw new Error(`Insufficient Payload (${InsufficientParam.toString()})`)
+    }
+
+    const updateProfile = await req.db('user')
+    .update({
+      name: payload.name,
+      dob: payload.dob,
+      phone: payload.phone,
+      address: payload.address
+    })
+    .where('email', '=', req.user.email)
+    .where('is_deleted', '=', 0)
+    console.log(updateProfile)
+
+    res.json({status: 'Successful'})
+  } catch (err) {
+    console.log(err)
+    res.status(400).json({err: err.message})
+  }
+  
+})
+
 module.exports = router
