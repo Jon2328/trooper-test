@@ -1,0 +1,16 @@
+{
+  "name": "trooper-test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Jon2328/trooper-test.git",
+  "author": "Jon <jon2328@hotmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "run-p dev:fe dev:be",
+    "dev:fe": "yarn --cwd ./client dev",
+    "dev:be": "yarn --cwd ./server dev"
+  },
+  "dependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}
