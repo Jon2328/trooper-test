@@ -7,7 +7,11 @@ export async function up(knex: Knex): Promise<void> {
     table.specificType('id', 'serial')
     table.string('email').notNullable()
     table.string('password').notNullable()
-    table.boolean('is_deleted').notNullable().defaultTo(false)
+    table.string('name')
+    table.string('dob')
+    table.string('phone')
+    table.string('address')
+    table.boolean('is_deleted').notNullable().defaultTo(0)
     table.timestamp('createdAt').notNullable().defaultTo(knex.fn.now())
   })
 }
