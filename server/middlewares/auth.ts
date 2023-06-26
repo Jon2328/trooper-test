@@ -7,7 +7,17 @@ export default async(req, res, next) => {
       throw new Error('Unauthorized')
     }
     const decoded = await jwt.verify(req.cookies.auth, process.env.JWT_SECRET);
-    req.user = { email: decoded.email }
+    const existingUser = await req.db('user')
+    .select('user.*')
+    .where('email', '=', decoded.email)
+    .where('is_deleted', '=', false)
+    .first()
+
+    if (!existingUser) {
+      throw new Error('Unauthorized')
+    }
+
+    req.user = existingUser
     return next()
   } catch(err) {
     console.log(err)
