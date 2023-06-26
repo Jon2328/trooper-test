@@ -1,0 +1,25 @@
+@import './font.sass'
+@import './variable.sass'
+
+*
+  box-sizing: border-box
+  font-family: Poppins
+
+:root
+  --primary: #1e235a
+  --secondary: #f58020
+  --error-red: #ff0000
+  --bg: #f8f8fa
+
+html
+  font-size: 16px
+  background-color: var(--bg)
+
+  +mobile
+    font-size: 12px
+
+  +tab
+    font-size: 14px
+
+body
+  margin: 0px
